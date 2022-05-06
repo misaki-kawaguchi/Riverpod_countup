@@ -46,8 +46,8 @@ class MyHomePage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              ref.watch(messageProvider),
             ),
             Text(
               '$_counter',
