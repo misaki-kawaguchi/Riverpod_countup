@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_countup/data/count_data.dart';
 import 'package:riverpod_countup/provider.dart';
+import 'package:riverpod_countup/view_model.dart';
 
 void main() {
   runApp(
@@ -36,6 +37,15 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
+
+  ViewModel _viewModel = ViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    _viewModel.setRef(ref);
+  }
+
   @override
   // Riverpodのproviderにアクセスできる
   Widget build(BuildContext context) {
@@ -53,7 +63,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               ref.watch(messageProvider),
             ),
             Text(
-              ref.watch(countDataProvider).count.toString(),
+              _viewModel.count,
               style: Theme.of(context).textTheme.headline4,
             ),
             Row(
