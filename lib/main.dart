@@ -61,9 +61,11 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               children: [
                 FloatingActionButton(
                   onPressed: () {
-                    CountData countData = ref.read(countDataProvider.state).state;
+                    CountData countData =
+                        ref.read(countDataProvider.state).state;
                     // copyWithメソッドを使用してコピーを作成する
-                    ref.read(countDataProvider.state).state = countData.copyWith(
+                    ref.read(countDataProvider.state).state =
+                        countData.copyWith(
                       count: countData.count + 1,
                       countUp: countData.countUp + 1,
                     );
@@ -72,9 +74,11 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 ),
                 FloatingActionButton(
                   onPressed: () {
-                    CountData countData = ref.read(countDataProvider.state).state;
+                    CountData countData =
+                        ref.read(countDataProvider.state).state;
                     // copyWithメソッドを使用してコピーを作成する
-                    ref.read(countDataProvider.state).state = countData.copyWith(
+                    ref.read(countDataProvider.state).state =
+                        countData.copyWith(
                       count: countData.count - 1,
                       countDown: countData.countDown + 1,
                     );
@@ -87,10 +91,18 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  ref.watch(countDataProvider).countUp.toString(),
+                  ref
+                      .watch(
+                        countDataProvider.select((value) => value.countUp),
+                      )
+                      .toString(),
                 ),
                 Text(
-                  ref.watch(countDataProvider).countDown.toString(),
+                  ref
+                      .watch(
+                        countDataProvider.select((value) => value.countDown),
+                      )
+                      .toString(),
                 ),
               ],
             ),
