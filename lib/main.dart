@@ -29,10 +29,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends ConsumerWidget {
   MyHomePage({Key? key}) : super(key: key);
 
-  int _counter = 0;
-
-  void _incrementCounter() {}
-
   @override
   // Riverpodのproviderにアクセスできる
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,14 +46,14 @@ class MyHomePage extends ConsumerWidget {
               ref.watch(messageProvider),
             ),
             Text(
-              '$_counter',
+              ref.watch(countProvider).toString(),
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed:() => ref.watch(countProvider.state).state++,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

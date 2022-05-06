@@ -8,3 +8,5 @@ final titleProvider = Provider<String>((ref) {
 final messageProvider = Provider<String>((ref) {
   return 'You have pushed the button this many times:';
 });
+
+final countProvider = StateProvider<int>((ref) => 0);
