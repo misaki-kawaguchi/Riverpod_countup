@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_countup/provider.dart';
 
 void main() {
   runApp(
@@ -20,27 +21,26 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends ConsumerWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({Key? key}) : super(key: key);
 
   int _counter = 0;
 
-  void _incrementCounter() {
-  }
+  void _incrementCounter() {}
 
   @override
   // Riverpodのproviderにアクセスできる
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(
+          ref.watch(titleProvider),
+        ),
       ),
       body: Center(
         child: Column(
