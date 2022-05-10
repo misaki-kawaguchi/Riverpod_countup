@@ -10,8 +10,20 @@ void main() {
         Device(name: 'iPhone55', size: Size(414, 736), devicePixelRatio: 3.0);
 
     List<Device> devices = [iPhone55];
-    
+
     ViewModel viewModel = ViewModel();
-    await tester.pumpWidgetBuilder(ProviderScope(child: MyHomePage(viewModel,)))
+    await tester.pumpWidgetBuilder(
+      ProviderScope(
+        child: MyHomePage(
+          viewModel,
+        ),
+      ),
+    );
+
+    await multiScreenGolden(
+      tester,
+      'myHomePage_0init',
+      devices: devices,
+    );
   });
 }
