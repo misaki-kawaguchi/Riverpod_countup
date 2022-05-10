@@ -63,5 +63,25 @@ void main() {
       'myHomePage_mock',
       devices: devices,
     );
+
+    verifyNever(() => mock.onIncrease());
+    verifyNever(() => mock.onDecrease());
+    verifyNever(() => mock.onReset());
+
+    await tester.tap(find.byIcon(CupertinoIcons.plus));
+    verify(() => mock.onIncrease()).called(1);
+    verifyNever(() => mock.onDecrease());
+    verifyNever(() => mock.onReset());
+
+    await tester.tap(find.byIcon(CupertinoIcons.minus));
+    await tester.tap(find.byIcon(CupertinoIcons.minus));
+    verifyNever(() => mock.onIncrease());
+    verify(() => mock.onDecrease()).called(2);
+    verifyNever(() => mock.onReset());
+
+    await tester.tap(find.byIcon(Icons.refresh));
+    verifyNever(() => mock.onIncrease());
+    verifyNever(() => mock.onDecrease());
+    verify(() => mock.onReset()).called(1);
   });
 }
